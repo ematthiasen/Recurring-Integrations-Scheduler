@@ -184,14 +184,27 @@ namespace RecurringIntegrationsScheduler.Job
                         {
                             Log.DebugFormat(CultureInfo.InvariantCulture, string.Format(Resources.Job_0_Uploading_file_1_File_size_2_bytes, _context.JobDetail.Key, dataMessage.FullPath.Replace(@"{", @"{{").Replace(@"}", @"}}"), sourceStream.Length));
                         }
+                        // New code-legal entity from file name
+                        // Hardcoded for type like 'd04_somethingsomething.zip'
+                        // No validation for format of legal entity
+                        var targetLegalEntity = _settings.Company;
+                        if (_settings.GetLegalEntityFromFilename)
+                        {
+                            String[] separator = { _settings.FilenameSeparator };
+                            var tokenList = dataMessage.Name.Split(separator, 10, StringSplitOptions.RemoveEmptyEntries);
+                            targetLegalEntity = tokenList[_settings.LegalEntityTokenPosition - 1];
+                        }
+
+
                         // Post enqueue file request
-                        var response = await _httpClientHelper.PostStreamRequestAsync(_httpClientHelper.GetEnqueueUri(), sourceStream, dataMessage.Name);
+                        var response = await _httpClientHelper.PostStreamRequestAsync(_httpClientHelper.GetEnqueueUri(targetLegalEntity), sourceStream, dataMessage.Name);
                         sourceStream.Close();
                         sourceStream.Dispose();
 
                         if (response.IsSuccessStatusCode)
                         {
                             var messageId = await response.Content.ReadAsStringAsync();
+                            Log.InfoFormat(CultureInfo.InvariantCulture, string.Format("File: '{0}' was successfully uploaded with messageId '{1}'", dataMessage.Name, messageId));
                             var targetDataMessage = new DataMessage(dataMessage)
                             {
                                 MessageId = messageId,

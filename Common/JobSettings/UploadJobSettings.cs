@@ -96,6 +96,8 @@ namespace RecurringIntegrationsScheduler.Common.JobSettings
 
             ProcessingJobPresent = dataMap.GetBooleanValue(SettingsConstants.ProcessingJobPresent);
 
+            GetLegalEntityFromFilename = dataMap.GetBooleanValue(SettingsConstants.GetLegalEntityFromFilename);
+
             //Company is not mandatory
             Company = dataMap.GetString(SettingsConstants.Company);
 
@@ -123,6 +125,14 @@ namespace RecurringIntegrationsScheduler.Common.JobSettings
             ReverseOrder = dataMap.GetBooleanValue(SettingsConstants.ReverseOrder);
 
             UploadInOrder = dataMap.GetBooleanValue(SettingsConstants.UploadInOrder);
+
+            FilenameSeparator = dataMap.GetString(SettingsConstants.FilenameSeparator);
+            if (GetLegalEntityFromFilename && string.IsNullOrEmpty(FilenameSeparator))
+            {
+                throw new JobExecutionException(string.Format(CultureInfo.InvariantCulture, Resources.no_separator));
+            }
+
+            LegalEntityTokenPosition = dataMap.GetInt(SettingsConstants.LegalEntityTokenPosition);
         }
 
         #region Members
@@ -182,6 +192,30 @@ namespace RecurringIntegrationsScheduler.Common.JobSettings
         /// The company.
         /// </value>
         public string Company { get; private set; }
+
+        /// <summary>
+        /// Get target legal entity from file name.
+        /// </summary>
+        /// <value>
+        /// Get target legal entity from file name.
+        /// </value>
+        public bool GetLegalEntityFromFilename { get; private set; }
+
+        /// <summary>
+        /// Separator in file name to get legal entity.
+        /// </summary>
+        /// <value>
+        /// Separator in file name to get legal entity.
+        /// </value>
+        public string FilenameSeparator { get; private set; }
+
+        /// <summary>
+        /// Position of legal entity token in splitted file name.
+        /// </summary>
+        /// <value>
+        /// Position of legal entity token in splitted file name.
+        /// </value>
+        public int LegalEntityTokenPosition { get; private set; }
 
         /// <summary>
         /// Gets the status file extension.
