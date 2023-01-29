@@ -1,6 +1,6 @@
 #define MyAppName "Recurring Integrations Scheduler - solution for file-based integrations with Dynamics 365 for Finance and Supply Chain Management, Enterprise Edition"
 #define MyAppShortName "Recurring Integrations Scheduler"
-#define MyAppVersion GetFileVersion("..\Output\Release\RecurringIntegrationsScheduler.exe")
+#define MyAppVersion GetFileVersion("..\Output\Debug\RecurringIntegrationsScheduler.exe")
                                                                                       
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -35,44 +35,44 @@ Name: Scheduler; Description: Recurring Integrations Scheduler Service; Types: f
 
 [Files]
 ; Quartz
-Source: "..\Output\Release\Quartz.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\log4net.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\Quartz.Plugins.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\Quartz.Jobs.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\Quartz.Serialization.Json.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\Topshelf.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: Scheduler
-Source: "..\Output\Release\RecurringIntegrationsScheduler.Server.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: Scheduler
+Source: "..\Output\Debug\Quartz.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\log4net.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\Quartz.Plugins.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\Quartz.Jobs.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\Quartz.Serialization.Json.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\Topshelf.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: Scheduler
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.Server.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: Scheduler
 ; Common
-Source: "..\Output\Release\RecurringIntegrationsScheduler.Common.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.Common.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
 ; Jobs
-Source: "..\Output\Release\RecurringIntegrationsScheduler.Job.Upload.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\RecurringIntegrationsScheduler.Job.ProcessingMonitor.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\RecurringIntegrationsScheduler.Job.Download.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\RecurringIntegrationsScheduler.Job.Import.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\RecurringIntegrationsScheduler.Job.Export.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\RecurringIntegrationsScheduler.Job.ExecutionMonitor.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.Job.Upload.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.Job.ProcessingMonitor.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.Job.Download.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.Job.Import.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.Job.Export.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.Job.ExecutionMonitor.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
 ; References
-Source: "..\Output\Release\Microsoft.Extensions.Logging.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\Microsoft.Identity.Client.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\Microsoft.IdentityModel.Clients.ActiveDirectory.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\Polly.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\PortableSettingsProvider.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\System.Buffers.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\System.Diagnostics.DiagnosticSource.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\System.Linq.Dynamic.Core.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\System.Memory.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\System.Numerics.Vectors.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\System.Runtime.CompilerServices.Unsafe.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
-Source: "..\Output\Release\UrlCombineLib.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\Microsoft.Extensions.Logging.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\Microsoft.Identity.Client.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\Polly.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\PortableSettingsProvider.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\System.Buffers.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\System.Diagnostics.DiagnosticSource.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\System.Linq.Dynamic.Core.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\System.Memory.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\System.Numerics.Vectors.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\System.Runtime.CompilerServices.Unsafe.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
+Source: "..\Output\Debug\UrlCombineLib.dll"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
 
 ; App
-Source: "..\Output\Release\RecurringIntegrationsScheduler.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: App
-Source: "..\Output\Release\RecurringIntegrationsScheduler.exe.config"; DestDir: "{app}"; Flags: ignoreversion; Components: App
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: App
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.exe.config"; DestDir: "{app}"; Flags: ignoreversion; Components: App
 
 ; Configuration files
-Source: "..\Output\Release\Schedule.xml"; DestDir: "{app}"; Flags: onlyifdoesntexist uninsneveruninstall; Components: Scheduler
-Source: "..\Output\Release\RecurringIntegrationsScheduler.Server.exe.config"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: Scheduler
+Source: "..\Output\Debug\Schedule.xml"; DestDir: "{app}"; Flags: onlyifdoesntexist uninsneveruninstall; Components: Scheduler
+Source: "..\Output\Debug\RecurringIntegrationsScheduler.Server.exe.config"; DestDir: "{app}"; Flags: onlyifdoesntexist; Components: Scheduler
 ; ReadMe
 Source: "..\README.MD"; DestDir: "{app}"; Flags: ignoreversion; Components: App Scheduler
 ; License

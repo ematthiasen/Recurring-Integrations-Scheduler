@@ -221,6 +221,8 @@ namespace RecurringIntegrationsScheduler.Forms
                 pauseOnExceptionsCheckBox.Checked = UploadJobDetail.JobDataMap.GetBooleanValue(SettingsConstants.PauseJobOnException);
                 verboseLoggingCheckBox.Checked = UploadJobDetail.JobDataMap.GetBooleanValue(SettingsConstants.LogVerbose);
 
+                getLegalEntityFromFilenameCheckbox.Checked = UploadJobDetail.JobDataMap.GetBooleanValue(SettingsConstants.GetLegalEntityFromFilename);
+
                 Properties.Settings.Default.Save();
             }
             if ((ProcessingJobDetail != null) && (ProcessingTrigger != null))
@@ -249,7 +251,7 @@ namespace RecurringIntegrationsScheduler.Forms
             }
             FormsHelper.SetDropDownsWidth(this);
         }
-        
+
         private IJobDetail GetUploadJobDetail()
         {
             var detail = JobBuilder
@@ -262,7 +264,7 @@ namespace RecurringIntegrationsScheduler.Forms
 
             return detail;
         }
-       
+
         private IJobDetail GetProcessingJobDetail()
         {
             var detail = JobBuilder
@@ -312,7 +314,10 @@ namespace RecurringIntegrationsScheduler.Forms
                 {SettingsConstants.PauseJobOnException, pauseOnExceptionsCheckBox.Checked},
                 {SettingsConstants.IndefinitePause, pauseIndefinitelyCheckBox.Checked},
                 {SettingsConstants.DelayBetweenFiles, numericUpDownIntervalUploads.Value},
-                {SettingsConstants.LogVerbose, verboseLoggingCheckBox.Checked}
+                {SettingsConstants.LogVerbose, verboseLoggingCheckBox.Checked},
+                {SettingsConstants.GetLegalEntityFromFilename, getLegalEntityFromFilenameCheckbox.Checked},
+                {SettingsConstants.FilenameSeparator, filenameSeparatorTextBox.Text},
+                {SettingsConstants.LegalEntityTokenPosition, legalEntityTokenPositionNumericUpDown.Value}
             };
             if (serviceAuthRadioButton.Checked)
             {
@@ -325,7 +330,7 @@ namespace RecurringIntegrationsScheduler.Forms
             }
             return map;
         }
-        
+
         private JobDataMap GetProcessingJobDataMap()
         {
             var instance = (Instance)instanceComboBox.SelectedItem;
@@ -365,7 +370,7 @@ namespace RecurringIntegrationsScheduler.Forms
             }
             return map;
         }
-        
+
         private ITrigger GetUploadTrigger(IJobDetail jobDetail)
         {
             var builder =
@@ -395,7 +400,7 @@ namespace RecurringIntegrationsScheduler.Forms
                     .StartNow()
                     .Build();
         }
-        
+
         private ITrigger GetProcessingTrigger(IJobDetail jobDetail)
         {
             var builder =
@@ -489,7 +494,7 @@ namespace RecurringIntegrationsScheduler.Forms
 
             return message.Length == 0;
         }
-        
+
         #region Form events
 
         private void AddToolStripButton_Click(object sender, EventArgs e)
@@ -771,7 +776,29 @@ namespace RecurringIntegrationsScheduler.Forms
                 }
             }
         }
-        
+
         #endregion
+
+
+
+
+        private void uploadDetailsGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void separatorExampleButton_Click(object sender, EventArgs e)
+        {
+                String[] separator = { filenameSeparatorTextBox.Text };
+                var tokenList = separatorExampleTextBox.Text.Split(separator, 10, StringSplitOptions.RemoveEmptyEntries);
+                separatorExampleLegalEntityTextBox.Text = tokenList[(int)legalEntityTokenPositionNumericUpDown.Value - 1];
+        }
+
+        private void getLegalEntityFromFilenameCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            getLegalEntityFromFilenameDetailsGroupBox.Enabled = getLegalEntityFromFilenameCheckbox.Checked;
+            legalEntityTextBox.ReadOnly = getLegalEntityFromFilenameCheckbox.Checked;
+        }
+
     }
 }
