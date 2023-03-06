@@ -275,7 +275,7 @@ namespace RecurringIntegrationsScheduler.Common.Helpers
             }
             var statusData = JsonConvert.SerializeObject(dataMessage, Formatting.Indented, new StringEnumConverter());
 
-            using var statusFileMemoryStream = new MemoryStream(Encoding.Default.GetBytes(statusData));
+            using var statusFileMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(statusData)); //Encoding changed to UTF-8
             Create(statusFileMemoryStream, Path.Combine(Path.GetDirectoryName(dataMessage.FullPath) ?? throw new InvalidOperationException(), Path.GetFileNameWithoutExtension(dataMessage.FullPath) + statusFileExtension));
         }
 
@@ -294,7 +294,7 @@ namespace RecurringIntegrationsScheduler.Common.Helpers
             var logFilePath = Path.Combine(Path.GetDirectoryName(targetDataMessage.FullPath) ?? throw new InvalidOperationException(), Path.GetFileNameWithoutExtension(targetDataMessage.FullPath) + statusFileExtension);
             var logData = JsonConvert.SerializeObject(httpResponse, Formatting.Indented, new StringEnumConverter());
 
-            using var logMemoryStream = new MemoryStream(Encoding.Default.GetBytes(logData));
+            using var logMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(logData)); //Encoding changed to UTF-8
             Create(logMemoryStream, logFilePath);
         }
 
@@ -327,7 +327,7 @@ namespace RecurringIntegrationsScheduler.Common.Helpers
                 logData = Resources.Unknown_error;
             }
 
-            using var logMemoryStream = new MemoryStream(Encoding.Default.GetBytes(logData));
+            using var logMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(logData)); //Encoding changed to UTF-8
             Create(logMemoryStream, logFilePath);
         }
     }
